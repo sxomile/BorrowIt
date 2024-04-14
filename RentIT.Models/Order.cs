@@ -17,6 +17,8 @@ namespace RentIT.Models
 		[ValidateNever]
 		public string ItemName {  get; set; }
 		[ValidateNever]
+		public int RentTime {  get; set; }
+		[ValidateNever]
 		public IdentityUser Lender {  get; set; }
 		[ValidateNever]
 		[ForeignKey("Lender")]

@@ -22,3 +22,4 @@ C:\dotNet\RentAThing\RentIT.Utility\obj\Debug\net7.0\RentIT.Utility.dll
 C:\dotNet\RentAThing\RentIT.Utility\obj\Debug\net7.0\refint\RentIT.Utility.dll
 C:\dotNet\RentAThing\RentIT.Utility\obj\Debug\net7.0\RentIT.Utility.pdb
 C:\dotNet\RentAThing\RentIT.Utility\obj\Debug\net7.0\ref\RentIT.Utility.dll
+C:\dotNet\RentAThing\RentIT.Utility\obj\Debug\net7.0\RentIT.Utility.sourcelink.json

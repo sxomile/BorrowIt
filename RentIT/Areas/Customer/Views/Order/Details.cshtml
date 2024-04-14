@@ -1,6 +1,6 @@
 ﻿@model Order
 
-<form method="post">
+<form method="get">
 @* 	<input asp-for="Item.Id" type="hidden" />
 	<input asp-for="Order.ItemName" type="hidden" />
 	<input asp-for="Order.BorrowerId" type="hidden" />
@@ -17,6 +17,11 @@
 					<label asp-for="ItemName" class="p-0">Item name:</label>
 					<input asp-for="ItemName" type="text" class="form-control" disabled />
 					<span asp-validation-for="ItemName" class="text-danger"></span>
+				</div>
+				<div class="mb-3 col-3 row p-1">
+					<label asp-for="RentTime" class="p-0">Days for rent:</label>
+					<input asp-for="RentTime" type="number" class="form-control" disabled />
+					<span asp-validation-for="RentTime" class="text-danger"></span>
 				</div>
 				<div class="mb-3 row p-1">
 					<label asp-for="Lender.UserName" class="p-0">Lender:</label>

@@ -590,3 +590,4 @@ C:\dotNet\RentAThing\RentIT\obj\Debug\net7.0\refint\RentIT.dll
 C:\dotNet\RentAThing\RentIT\obj\Debug\net7.0\RentIT.pdb
 C:\dotNet\RentAThing\RentIT\obj\Debug\net7.0\RentIT.genruntimeconfig.cache
 C:\dotNet\RentAThing\RentIT\obj\Debug\net7.0\ref\RentIT.dll
+C:\dotNet\RentAThing\RentIT\obj\Debug\net7.0\RentIT.sourcelink.json

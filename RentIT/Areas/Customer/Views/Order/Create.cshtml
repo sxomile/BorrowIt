@@ -3,6 +3,7 @@
 <form method="post">
 	<input asp-for="Item.Id" type="hidden" />
 	<input asp-for="Order.ItemName" type="hidden" />
+	<input asp-for="Order.RentTime" type="hidden" />
 	<input asp-for="Order.BorrowerId" type="hidden" />
 	<input asp-for="Order.LenderId" type="hidden" />
 	@* <input asp-for="Item.ImageUrl" hidden /> *@
@@ -17,6 +18,11 @@
 					<label asp-for="Order.ItemName" class="p-0">Item name:</label>
 					<input asp-for="Order.ItemName" type="text" class="form-control" disabled />
 					<span asp-validation-for="Order.ItemName" class="text-danger"></span>
+				</div>
+				<div class="mb-3 col-3 row p-1">
+					<label asp-for="Order.RentTime" class="p-0">Days for rent:</label>
+					<input asp-for="Order.RentTime" type="number" class="form-control" disabled />
+					<span asp-validation-for="Order.RentTime" class="text-danger"></span>
 				</div>
 				<div class="mb-3 row p-1">
 					<label asp-for="Order.Lender.UserName" class="p-0">Lender:</label>
@@ -56,4 +62,3 @@
 		<partial name="_ValidationScriptsPartial"/>
 	}
 }
-

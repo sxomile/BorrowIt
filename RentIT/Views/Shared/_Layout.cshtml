@@ -25,21 +25,23 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        @if(User.IsInRole(StaticDetails.Role_Admin) || User.IsInRole(StaticDetails.Role_User))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="MyItem" asp-action="Index">My Items</a>
-                            </li>
-                        }
                         @if (User.IsInRole(StaticDetails.Role_Admin))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Admin" asp-controller="Item" asp-action="Index">All Items</a>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Customer" asp-controller="Order" asp-action="Index">My orders</a>
-                        </li>
+
+                        @if (User.IsInRole(StaticDetails.Role_Admin) || User.IsInRole(StaticDetails.Role_User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="MyItem" asp-action="Index">My Items</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Order" asp-action="Index">My orders</a>
+                            </li>
+                        }
+                        
                         
                         
                     </ul>

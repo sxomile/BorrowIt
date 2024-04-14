@@ -285,6 +285,9 @@ namespace RentIT.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("RentTime")
+                        .HasColumnType("int");
+
                     b.HasKey("OrderId");
 
                     b.HasIndex("BorrowerId");

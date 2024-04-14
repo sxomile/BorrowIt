@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RentIT.DataAccess.Repository.IRepository;
 using RentIT.Models;
@@ -7,6 +8,7 @@ using RentIT.Models.ViewModels;
 namespace RentIT.Areas.Customer.Controllers
 {
 	[Area("Customer")]
+	[Authorize]
 	public class OrderController : Controller
 	{
 		private readonly ILogger<OrderController> _logger;
@@ -40,6 +42,7 @@ namespace RentIT.Areas.Customer.Controllers
 				Lender = item.Creator,
 				LenderId = item.CreatorId,
 				ItemName = item.Name,
+				RentTime = item.RentTime,
 
 			};
 

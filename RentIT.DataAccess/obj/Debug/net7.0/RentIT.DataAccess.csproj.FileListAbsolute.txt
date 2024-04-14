@@ -32,3 +32,4 @@ C:\dotNet\RentAThing\RentIT.DataAccess\obj\Debug\net7.0\refint\RentIT.DataAccess
 C:\dotNet\RentAThing\RentIT.DataAccess\obj\Debug\net7.0\RentIT.DataAccess.pdb
 C:\dotNet\RentAThing\RentIT.DataAccess\obj\Debug\net7.0\RentIT.DataAccess.genruntimeconfig.cache
 C:\dotNet\RentAThing\RentIT.DataAccess\obj\Debug\net7.0\ref\RentIT.DataAccess.dll
+C:\dotNet\RentAThing\RentIT.DataAccess\obj\Debug\net7.0\RentIT.DataAccess.sourcelink.json
