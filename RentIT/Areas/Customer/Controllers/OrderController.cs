@@ -26,8 +26,9 @@ namespace RentIT.Areas.Customer.Controllers
 		public IActionResult Index()
 		{
 			IEnumerable<Order> orders = _unitOfWork.Order.GetAll()
-				.Where(o => o.LenderId == _userManager.GetUserId(User)
-				|| o.BorrowerId == _userManager.GetUserId(User));
+				.Where(o => (o.LenderId == _userManager.GetUserId(User)
+				|| o.BorrowerId == _userManager.GetUserId(User)) 
+				&& o.OrderDate.AddDays(o.RentTime) >= DateTime.Today);
 			return View(orders);
 		}
 
@@ -43,6 +44,7 @@ namespace RentIT.Areas.Customer.Controllers
 				LenderId = item.CreatorId,
 				ItemName = item.Name,
 				RentTime = item.RentTime,
+				OrderDate = DateTime.Today,
 
 			};
 
@@ -85,7 +87,10 @@ namespace RentIT.Areas.Customer.Controllers
         public IActionResult GetAll()
         {
             List<Order> objItemList = _unitOfWork.Order.GetAll(includeProperties:"Lender,Borrower", 
-				filter: (i => i.BorrowerId == _userManager.GetUserId(User) || i.LenderId == _userManager.GetUserId(User)))
+				filter: (o => (o.LenderId == _userManager.GetUserId(User)
+				|| o.BorrowerId == _userManager.GetUserId(User))
+				&& o.OrderDate.AddDays(o.RentTime) >= DateTime.Today
+				))
 				.ToList();
             return Json(new { data = objItemList });
         }

@@ -591,3 +591,7 @@ C:\dotNet\RentAThing\RentIT\obj\Debug\net7.0\RentIT.pdb
 C:\dotNet\RentAThing\RentIT\obj\Debug\net7.0\RentIT.genruntimeconfig.cache
 C:\dotNet\RentAThing\RentIT\obj\Debug\net7.0\ref\RentIT.dll
 C:\dotNet\RentAThing\RentIT\obj\Debug\net7.0\RentIT.sourcelink.json
+C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll

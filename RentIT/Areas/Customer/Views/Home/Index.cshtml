@@ -1,7 +1,24 @@
-﻿@model IEnumerable<Item>
+﻿@model HomeVM
 
 <div class="row pb-3">
-	@foreach(var item in Model)
+
+	<div class="row">
+		@if(Model.Nearby == false)
+		{
+			<div class="col-6">
+				<a href="@Url.Action("Index", "Home", new { nearby = true })" class="btn btn-primary">Show Items Nearby</a>
+			</div>
+		}
+		else
+		{
+			<div class="h3 text-primary col-6">Items in @Model.City, @Model.Country</div>
+			<div class="col-4 text-end">
+				<a href="@Url.Action("Index", "Home", new { nearby = false })" class="btn btn-secondary">Show All Items</a>
+			</div>
+		}
+	</div>
+
+	@foreach(var item in Model.Items)
 	{
 		<div class="col-lg-3 col-sm-6">
 			<div class="row p-2">
