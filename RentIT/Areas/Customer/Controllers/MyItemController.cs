@@ -25,7 +25,7 @@ namespace RentIT.Areas.Customer.Controllers
             _userManager = userManager;
 			_webHostEnvironment = webHostEnvironment;
         }
-
+		[HttpGet]
         public IActionResult Index()
         {
             IEnumerable<Item> itemList = _unitOfWork.Item.GetAll().Where(i => i.CreatorId == _userManager.GetUserId(User));
@@ -40,6 +40,7 @@ namespace RentIT.Areas.Customer.Controllers
 			return Json(new { data = objItemList });
 		}
 
+		[HttpGet]
         public IActionResult Upsert(int? id)
         {
             ItemVM itemVM = new ItemVM()
