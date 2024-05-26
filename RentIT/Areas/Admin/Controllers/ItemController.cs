@@ -8,7 +8,7 @@ using RentIT.Models.ViewModels;
 using RentIT.Utility;
 
 namespace RentIT.Areas.Admin.Controllers
-{ 
+{
     [Area("Admin")]
     [Authorize(Roles = StaticDetails.Role_Admin)]
     public class ItemController : Controller

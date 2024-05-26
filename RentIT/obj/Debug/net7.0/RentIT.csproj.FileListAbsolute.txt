@@ -619,3 +619,15 @@ C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\System.Text.Json.dll
 C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\System.Threading.Channels.dll
 C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\runtimes\browser\lib\net7.0\System.Text.Encodings.Web.dll
 C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\System.Net.WebSockets.WebSocketProtocol.dll
+C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\System.Web.Mvc.dll
+C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\System.Web.Razor.dll
+C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\System.Web.Helpers.dll
+C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\System.Web.WebPages.Deployment.dll
+C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\System.Web.WebPages.Razor.dll
+C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\System.Web.WebPages.dll
+C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\Microsoft.Web.Infrastructure.dll
+C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\X.PagedList.dll
+C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\X.PagedList.Mvc.dll
+C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\X.PagedList.Mvc.Core.dll
+C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\X.PagedList.Web.Common.dll
+C:\dotNet\RentAThing\RentIT\bin\Debug\net7.0\X.PagedList.Mvc.Bootstrap4.Core.dll

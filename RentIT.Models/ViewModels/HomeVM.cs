@@ -1,4 +1,5 @@
-﻿using System;
+﻿using X.PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace RentIT.Models.ViewModels
 {
 	public class HomeVM
 	{
-		public IEnumerable<Item> Items { get; set; }
+		public IPagedList<Item> Items { get; set; }
         public string City { get; set; }
 		public string Country {  get; set; }
 		public bool Nearby {  get; set; }

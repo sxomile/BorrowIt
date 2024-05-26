@@ -7,6 +7,8 @@ using RentIT.Models.ViewModels;
 using System.Diagnostics;
 using System.Globalization;
 using System.Net;
+using X.PagedList;
+using X.PagedList.Mvc;
 
 namespace RentIT.Areas.Customer.Controllers
 {
@@ -22,14 +24,14 @@ namespace RentIT.Areas.Customer.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index(bool nearby = false)
+        public IActionResult Index(int? page, bool nearby = false)
         {
             HomeVM homeVM = new HomeVM();
             homeVM.Nearby = nearby;
 
             if(!nearby)
             {
-                homeVM.Items = _unitOfWork.Item.GetAll();
+                homeVM.Items = _unitOfWork.Item.GetAll().ToPagedList(page ?? 1, 8);
                 return View(homeVM);
 
 			}
@@ -52,7 +54,8 @@ namespace RentIT.Areas.Customer.Controllers
 			}
 
 			homeVM.Items = _unitOfWork.Item.GetAll(i => ((ApplicationUser)i.Creator).City == homeVM.City
-			&& ((ApplicationUser)i.Creator).Country == homeVM.Country, includeProperties: "Creator");
+			    && ((ApplicationUser)i.Creator).Country == homeVM.Country, includeProperties: "Creator")
+                .ToPagedList(page ?? 1, 8);
 			
             return View(homeVM);
         }

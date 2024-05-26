@@ -1,4 +1,7 @@
-﻿@model HomeVM
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Bootstrap4.Core
+@using X.PagedList.Mvc.Core;
+@model HomeVM
 
 <div class="row pb-3">
 
@@ -41,4 +44,7 @@
 			</div>
 		</div>
 	}
+
+	@Html.PagedListPager(Model.Items, page => Url.Action("Index", new { page }), Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
+	
 </div>
