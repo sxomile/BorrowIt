@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets\\img\\item\\2682dbac-2f1e-451f-b3a1-298299036c5b.png"
     },
     {
+      "Id": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\2d2885dd-7eb5-471c-9d2b-865378734e8f.png",
+      "PackagePath": "staticwebassets\\img\\item\\2d2885dd-7eb5-471c-9d2b-865378734e8f.png"
+    },
+    {
       "Id": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\2ec426f3-e886-4def-a280-060be4866b47.png",
       "PackagePath": "staticwebassets\\img\\item\\2ec426f3-e886-4def-a280-060be4866b47.png"
     },
@@ -43,6 +47,10 @@
     {
       "Id": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\4bbce972-b9e0-47b1-83d9-1c3d003d10ad.jpeg",
       "PackagePath": "staticwebassets\\img\\item\\4bbce972-b9e0-47b1-83d9-1c3d003d10ad.jpeg"
+    },
+    {
+      "Id": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\4bdc3c04-0346-4eac-be1d-08c6269864b6.png",
+      "PackagePath": "staticwebassets\\img\\item\\4bdc3c04-0346-4eac-be1d-08c6269864b6.png"
     },
     {
       "Id": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\4e38392b-2c24-4f98-84d1-971b2a2cd6ff.webp",
@@ -69,6 +77,10 @@
       "PackagePath": "staticwebassets\\img\\item\\6763d706-178c-4de5-8130-b22e168f9c5b.png"
     },
     {
+      "Id": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\6b5cbf6c-10af-4a23-84bb-b811e7ca3e71.png",
+      "PackagePath": "staticwebassets\\img\\item\\6b5cbf6c-10af-4a23-84bb-b811e7ca3e71.png"
+    },
+    {
       "Id": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\6cdd6106-acc4-4790-b770-5633c534f17d.png",
       "PackagePath": "staticwebassets\\img\\item\\6cdd6106-acc4-4790-b770-5633c534f17d.png"
     },
@@ -77,8 +89,24 @@
       "PackagePath": "staticwebassets\\img\\item\\781ff1f6-88c7-41a6-a646-8146d1301120.png"
     },
     {
+      "Id": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\87427a1a-23ed-4361-a705-62c7c0f86147.png",
+      "PackagePath": "staticwebassets\\img\\item\\87427a1a-23ed-4361-a705-62c7c0f86147.png"
+    },
+    {
+      "Id": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\a257b246-e9ea-4978-b933-7f1168c60b6b.png",
+      "PackagePath": "staticwebassets\\img\\item\\a257b246-e9ea-4978-b933-7f1168c60b6b.png"
+    },
+    {
       "Id": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\a8656e58-2284-4e94-b12a-b5273e9e5a45.png",
       "PackagePath": "staticwebassets\\img\\item\\a8656e58-2284-4e94-b12a-b5273e9e5a45.png"
+    },
+    {
+      "Id": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\bf306594-054e-4f75-adc4-0abbe5c06d19.png",
+      "PackagePath": "staticwebassets\\img\\item\\bf306594-054e-4f75-adc4-0abbe5c06d19.png"
+    },
+    {
+      "Id": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\c3d18110-dc1c-4f1b-9322-3d5d29e29774.png",
+      "PackagePath": "staticwebassets\\img\\item\\c3d18110-dc1c-4f1b-9322-3d5d29e29774.png"
     },
     {
       "Id": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\d496f334-4d48-4762-8ae7-cadaf837bce6.png",
@@ -97,8 +125,16 @@
       "PackagePath": "staticwebassets\\img\\item\\e171b752-e918-4811-a359-e3854b227c15.png"
     },
     {
+      "Id": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\e3329d3d-420f-4a44-a3fc-38f4dfef8dfd.png",
+      "PackagePath": "staticwebassets\\img\\item\\e3329d3d-420f-4a44-a3fc-38f4dfef8dfd.png"
+    },
+    {
       "Id": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\e7a682a1-e0cc-4793-92ea-e4055c223d69.png",
       "PackagePath": "staticwebassets\\img\\item\\e7a682a1-e0cc-4793-92ea-e4055c223d69.png"
+    },
+    {
+      "Id": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\ee0ffb8b-b28b-436b-b6c3-daeaa88b6bc6.png",
+      "PackagePath": "staticwebassets\\img\\item\\ee0ffb8b-b28b-436b-b6c3-daeaa88b6bc6.png"
     },
     {
       "Id": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\efdea942-c977-4462-b97b-94c094674616.png",

@@ -1,25 +1,42 @@
 ﻿@using X.PagedList;
-@using X.PagedList.Mvc.Bootstrap4.Core
+@using X.PagedList.Mvc.Bootstrap4.Core;
 @using X.PagedList.Mvc.Core;
 @model HomeVM
 
 <div class="row pb-3">
 
+	<div>
+		@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+		{
+			@Html.TextBox("search", ViewData["CurrentSearch"] as string)
+			@Html.Hidden("nearby", Model.Nearby)
+			<input type="submit" value="Search" />
+		}
+	</div>
+
+	<br />
+	<br />
+
 	<div class="row">
 		@if(Model.Nearby == false)
 		{
 			<div class="col-6">
-				<a href="@Url.Action("Index", "Home", new { nearby = true })" class="btn btn-primary">Show Items Nearby</a>
+				<a href="@Url.Action("Index", "Home", new { nearby = true, search = ViewData["CurrentSearch"] })" class="btn btn-primary">Show Items Nearby</a>
 			</div>
 		}
 		else
 		{
 			<div class="h3 text-primary col-6">Items in @Model.City, @Model.Country</div>
 			<div class="col-4 text-end">
-				<a href="@Url.Action("Index", "Home", new { nearby = false })" class="btn btn-secondary">Show All Items</a>
+				<a href="@Url.Action("Index", "Home", new { nearby = false, search = ViewData["CurrentSearch"] })" class="btn btn-secondary">Show All Items</a>
 			</div>
 		}
 	</div>
+	
+	@if(Model.Items.Count() == 0)
+	{
+		<h3>No items match the search query!</h3>
+	}
 
 	@foreach(var item in Model.Items)
 	{
@@ -45,6 +62,8 @@
 		</div>
 	}
 
-	@Html.PagedListPager(Model.Items, page => Url.Action("Index", new { page }), Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
-	
+	@if (Model.Items.Count() != 0)
+	{
+		@Html.PagedListPager(Model.Items, page => Url.Action("Index", new { page, search = Context.Request.Query["search"], nearby = Context.Request.Query["nearby"] }), Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
+	}
 </div>

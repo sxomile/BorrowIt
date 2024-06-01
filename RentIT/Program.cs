@@ -5,7 +5,6 @@ using RentIT.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using RentIT.Utility;
-using RentIT.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,8 +57,7 @@ app.MapRazorPages();
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapHub<SignalServer>("/signalServer");
-    endpoints.MapControllerRoute(
+	endpoints.MapControllerRoute(
     name: "default",
     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 });

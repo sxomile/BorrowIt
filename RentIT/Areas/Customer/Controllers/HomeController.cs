@@ -24,14 +24,15 @@ namespace RentIT.Areas.Customer.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index(int? page, bool nearby = false)
+        public IActionResult Index(int? page, bool nearby = false, string search = "")
         {
             HomeVM homeVM = new HomeVM();
             homeVM.Nearby = nearby;
+			ViewData["CurrentSearch"] = search;
 
-            if(!nearby)
+			if (!nearby)
             {
-                homeVM.Items = _unitOfWork.Item.GetAll().ToPagedList(page ?? 1, 8);
+                homeVM.Items = _unitOfWork.Item.GetAll(i => i.Name.StartsWith(search)).ToPagedList(page ?? 1, 8);
                 return View(homeVM);
 
 			}
@@ -54,7 +55,9 @@ namespace RentIT.Areas.Customer.Controllers
 			}
 
 			homeVM.Items = _unitOfWork.Item.GetAll(i => ((ApplicationUser)i.Creator).City == homeVM.City
-			    && ((ApplicationUser)i.Creator).Country == homeVM.Country, includeProperties: "Creator")
+			    && ((ApplicationUser)i.Creator).Country == homeVM.Country
+                && i.Name.StartsWith(search), 
+                includeProperties: "Creator")
                 .ToPagedList(page ?? 1, 8);
 			
             return View(homeVM);
