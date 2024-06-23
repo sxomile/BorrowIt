@@ -13,11 +13,14 @@ function loadDataTable() {
             { data: 'borrower.userName', "width": "20%" },
 
             {
-                data: 'rentTime',
-                "render": (data) => {
-                    return data + ' days'
+                data: null,
+                "render": function (data, type, row) {
+
+                    let borrowingDate = moment(row.borrowingDate);
+                    let endDate = borrowingDate.add(row.rentTime, 'days');
+                    return endDate.format('YYYY-MM-DD'); 
                 },
-                "width": "5%"
+                "width": "15%"
             },
 
             {
@@ -27,7 +30,7 @@ function loadDataTable() {
                      <a href="/customer/order/details?id=${data}" class="btn btn-info mx-2"> <i class="bi bi-info-circle"></i>Info</a>
                     </div>`
                 },
-                "width": "25%"
+                "width": "15%"
             }
 
         ]

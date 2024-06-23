@@ -18,7 +18,7 @@
 	<br />
 
 	<div class="row">
-		@if(Model.Nearby == false)
+		@if (Model.Nearby == false)
 		{
 			<div class="col-6">
 				<a href="@Url.Action("Index", "Home", new { nearby = true, search = ViewData["CurrentSearch"] })" class="btn btn-primary">Show Items Nearby</a>
@@ -32,13 +32,13 @@
 			</div>
 		}
 	</div>
-	
-	@if(Model.Items.Count() == 0)
+
+	@if (Model.Items.Count() == 0)
 	{
 		<h3>No items match the search query!</h3>
 	}
 
-	@foreach(var item in Model.Items)
+	@foreach (var item in Model.Items)
 	{
 		<div class="col-lg-3 col-sm-6">
 			<div class="row p-2">
@@ -49,6 +49,16 @@
 							<div class="pl-1">
 								<p class="card-title h5 text-dark opacity-75 text-uppercase text-center">@item.Name</p>
 								<p class="card-title text-warning text-center">@item.RentTime days</p>
+								@{
+									var creator = item.Creator as ApplicationUser;
+									if (creator != null)
+									{
+										<p class="card-title text-secondary text-center">
+											@creator.City, @creator.Country
+										</p>
+
+									}
+								}
 							</div>
 						</div>
 						<div>

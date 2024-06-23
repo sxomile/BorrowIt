@@ -5,6 +5,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{6D1AB099-B25C-4474-A43A-EE8934849B0F}|RentIT\\RentIT.csproj|c:\\dotnet\\rentathing\\rentit\\areas\\customer\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{6D1AB099-B25C-4474-A43A-EE8934849B0F}|RentIT\\RentIT.csproj|solutionrelative:rentit\\areas\\customer\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8B191F9A-6C20-4350-ACE7-3F9AD6002514}|RentIT.Models\\RentIT.Models.csproj|c:\\dotnet\\rentathing\\rentit.models\\viewmodels\\homevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8B191F9A-6C20-4350-ACE7-3F9AD6002514}|RentIT.Models\\RentIT.Models.csproj|solutionrelative:rentit.models\\viewmodels\\homevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D1AB099-B25C-4474-A43A-EE8934849B0F}|RentIT\\RentIT.csproj|c:\\dotnet\\rentathing\\rentit\\areas\\customer\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D1AB099-B25C-4474-A43A-EE8934849B0F}|RentIT\\RentIT.csproj|solutionrelative:rentit\\areas\\customer\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,15 +34,41 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HomeVM.cs",
+              "DocumentMoniker": "C:\\dotNet\\RentAThing\\RentIT.Models\\ViewModels\\HomeVM.cs",
+              "RelativeDocumentMoniker": "RentIT.Models\\ViewModels\\HomeVM.cs",
+              "ToolTip": "C:\\dotNet\\RentAThing\\RentIT.Models\\ViewModels\\HomeVM.cs",
+              "RelativeToolTip": "RentIT.Models\\ViewModels\\HomeVM.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-23T19:57:54.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\dotNet\\RentAThing\\RentIT\\Areas\\Customer\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "RentIT\\Areas\\Customer\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\dotNet\\RentAThing\\RentIT\\Areas\\Customer\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "RentIT\\Areas\\Customer\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAAAYwD4AAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-23T19:57:40.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\dotNet\\RentAThing\\RentIT\\Areas\\Customer\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "RentIT\\Areas\\Customer\\Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\dotNet\\RentAThing\\RentIT\\Areas\\Customer\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "RentIT\\Areas\\Customer\\Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAAAEIAAACcAAAA",
+              "ViewState": "AQIAACQAAAAAAAAAAAAwwDcAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-31T19:47:13.052Z",
+              "WhenOpened": "2024-06-23T19:46:37.956Z",
               "EditorCaption": ""
             }
           ]

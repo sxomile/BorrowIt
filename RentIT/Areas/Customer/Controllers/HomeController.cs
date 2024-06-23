@@ -32,7 +32,7 @@ namespace RentIT.Areas.Customer.Controllers
 
 			if (!nearby)
             {
-                homeVM.Items = _unitOfWork.Item.GetAll(i => i.Name.StartsWith(search)).ToPagedList(page ?? 1, 8);
+                homeVM.Items = _unitOfWork.Item.GetAll(i => i.Name.StartsWith(search), includeProperties: "Creator").ToPagedList(page ?? 1, 8);
                 return View(homeVM);
 
 			}
