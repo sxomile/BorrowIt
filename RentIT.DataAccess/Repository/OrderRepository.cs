@@ -16,5 +16,13 @@ namespace RentIT.DataAccess.Repository
 		{
 			_db = db;
 		}
+		public void Update(Order order)
+		{
+			var orderDB = _db.Orders.FirstOrDefault(o => o.OrderId == order.OrderId);
+			if (orderDB != null)
+			{
+				orderDB.IsReturned = order.IsReturned;	//jedina moguca promena u ovom momentu
+			}
+		}
 	}
 }

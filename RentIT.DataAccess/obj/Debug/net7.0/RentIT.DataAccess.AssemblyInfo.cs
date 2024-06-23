@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RentIT.DataAccess")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0eaf8f611252c4db2eec7515254f964066520ad")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77ba962ee84f2fe0ccd8b9a612bb2fcc4a677145")]
 [assembly: System.Reflection.AssemblyProductAttribute("RentIT.DataAccess")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RentIT.DataAccess")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

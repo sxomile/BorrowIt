@@ -13,10 +13,10 @@ function loadDataTable() {
             { data: 'borrower.userName', "width": "20%" },
 
             {
-                data: null,
+                data: 'orderDate',
                 "render": function (data, type, row) {
 
-                    let borrowingDate = moment(row.borrowingDate);
+                    let borrowingDate = moment(row.orderDate);
                     let endDate = borrowingDate.add(row.rentTime, 'days');
                     return endDate.format('YYYY-MM-DD'); 
                 },
@@ -24,11 +24,20 @@ function loadDataTable() {
             },
 
             {
-                data: 'orderId',
-                "render": function (data) {
-                    return `<div class="w-75 btn-group" role="group">
-                     <a href="/customer/order/details?id=${data}" class="btn btn-info mx-2"> <i class="bi bi-info-circle"></i>Info</a>
-                    </div>`
+                data: null,
+                "render": function (data, type, row) {
+                    let borrowingDate = moment(row.orderDate);
+                    let endDate = borrowingDate.add(row.rentTime, 'days');
+
+                    if (endDate.isBefore(moment(), 'day') && row.isReturned == false) {
+                        return `<div class="w-75 btn-group" role="group">
+                        <a href="/customer/order/details?id=${row.orderId}" class="btn btn-danger mx-2"> <i class="bi bi-exclamation-triangle"></i>Late!</a>
+                         </div>`
+                    } else {
+                        return `<div class="w-75 btn-group" role="group">
+                        <a href="/customer/order/details?id=${row.orderId}" class="btn btn-info mx-2"> <i class="bi bi-info-circle"></i>Info</a>
+                         </div>`
+                    }
                 },
                 "width": "15%"
             }
@@ -36,4 +45,3 @@ function loadDataTable() {
         ]
     });
 }
-

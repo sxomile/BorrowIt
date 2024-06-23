@@ -1,8 +1,8 @@
 ﻿@model Order
 
-<form method="get">
-@* 	<input asp-for="Item.Id" type="hidden" />
-	<input asp-for="Order.ItemName" type="hidden" />
+<form method="post">
+ 	<input asp-for="@Model.OrderId" type="hidden" />
+	@*<input asp-for="Order.ItemName" type="hidden" />
 	<input asp-for="Order.BorrowerId" type="hidden" />
 	<input asp-for="Order.LenderId" type="hidden" /> *@
 	@* <input asp-for="Item.ImageUrl" hidden /> *@
@@ -49,6 +49,10 @@
 					</div> *@
 					<div class="col-6 col-md-3">
 						<a asp-controller="Order" asp-action="Index" class="btn btn-light form-control">Back to items</a>
+					</div>
+					<div class="col-6 col-md-3">
+						<button type="submit" class="btn btn-primary form-control">Mark as returned!</button>
+
 					</div>
 				</div>
 			</div>

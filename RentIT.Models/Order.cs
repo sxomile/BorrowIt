@@ -31,6 +31,7 @@ namespace RentIT.Models
 		[ValidateNever]
 		[ForeignKey("Borrower")]
 		public string BorrowerId { get; set; }
+		public bool IsReturned { get; set; } = false;
 
 	}
 }

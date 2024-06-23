@@ -25,11 +25,11 @@ namespace RentIT.Areas.Customer.Controllers
 
 		public IActionResult Index()
 		{
-			IEnumerable<Order> orders = _unitOfWork.Order.GetAll()
-				.Where(o => (o.LenderId == _userManager.GetUserId(User)
-				|| o.BorrowerId == _userManager.GetUserId(User)) 
-				&& o.OrderDate.AddDays(o.RentTime) >= DateTime.Today);
-			return View(orders);
+			//IEnumerable<Order> orders = _unitOfWork.Order.GetAll()
+			//	.Where(o => (o.LenderId == _userManager.GetUserId(User)
+			//	|| o.BorrowerId == _userManager.GetUserId(User))
+			//	&& o.IsReturned == false);
+			return View();
 		}
 
 		[HttpGet]
@@ -77,10 +77,22 @@ namespace RentIT.Areas.Customer.Controllers
 			return RedirectToAction("Index");
 		}
 
+		[HttpGet]
 		public IActionResult Details(int id)
 		{
 			Order order = _unitOfWork.Order.Get(expr: o => o.OrderId == id, includeProperties:"Lender,Borrower");
 			return View(order);
+		}
+
+		[HttpPost]
+		public IActionResult Details(Order order)
+		{
+			order.IsReturned = true;
+
+			_unitOfWork.Order.Update(order);
+			_unitOfWork.Save();
+
+			return RedirectToAction("Index");
 		}
 
         #region APICalls
@@ -89,7 +101,7 @@ namespace RentIT.Areas.Customer.Controllers
             List<Order> objItemList = _unitOfWork.Order.GetAll(includeProperties:"Lender,Borrower", 
 				filter: (o => (o.LenderId == _userManager.GetUserId(User)
 				|| o.BorrowerId == _userManager.GetUserId(User))
-				&& o.OrderDate.AddDays(o.RentTime) >= DateTime.Today
+				&& o.IsReturned == false
 				))
 				.ToList();
             return Json(new { data = objItemList });
