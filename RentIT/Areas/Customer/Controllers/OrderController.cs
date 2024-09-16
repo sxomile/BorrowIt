@@ -78,10 +78,13 @@ namespace RentIT.Areas.Customer.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Details(int id)
+		public async Task<IActionResult> Details(int id)
 		{
-			Order order = _unitOfWork.Order.Get(expr: o => o.OrderId == id, includeProperties:"Lender,Borrower");
-			return View(order);
+			OrderVM orderVM = new OrderVM();
+			orderVM.Order = _unitOfWork.Order.Get(expr: o => o.OrderId == id, includeProperties:"Lender,Borrower");
+			orderVM.User = await _userManager.GetUserAsync(User);
+			
+			return View(orderVM);
 		}
 
 		[HttpPost]

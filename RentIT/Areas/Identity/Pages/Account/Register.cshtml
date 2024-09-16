@@ -43,14 +43,19 @@
                             <span asp-validation-for="Input.StreetAddress" class="text-danger"></span>
                         </div>
                         <div class="form-floating mb-3 col-md-4">
-                            <input asp-for="Input.City" class="form-control" />
-                            <label asp-for="Input.City" class="ms-2 text-muted">City</label>
-                            <span asp-validation-for="Input.City" class="text-danger"></span>
+                            <select asp-for="Input.CityFromIDId" asp-items="Model.Input.CityFromList" class="form-select">
+                                <option disabled selected>--Select City of Origin--</option>
+                            </select>
+                            <label asp-for="Input.CityFromIDId" class="ms-2 text-muted">City of Origin</label>
+                            <span asp-validation-for="Input.CityFromIDId" class="text-danger"></span>
                         </div>
+
                         <div class="form-floating mb-3 col-md-4">
-                            <input asp-for="Input.Country" class="form-control" />
-                            <label asp-for="Input.Country" class="ms-2 text-muted">Country</label>
-                            <span asp-validation-for="Input.Country" class="text-danger"></span>
+                            <select asp-for="Input.CityOfResidenceID" asp-items="Model.Input.CityOfResidenceList" class="form-select">
+                                <option disabled selected>--Select City of Residence--</option>
+                            </select>
+                            <label asp-for="Input.CityOfResidenceID" class="ms-2 text-muted">City of Residence</label>
+                            <span asp-validation-for="Input.CityOfResidenceID" class="text-danger"></span>
                         </div>
                         <div class="form-floating mb-3 col-md-4">
                             <input asp-for="Input.PhoneNumber" class="form-control" />

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Report>
+
+<div class="container">
+	<div class="row pt-4">
+		<div class="col-6">
+			@if(User.IsInRole(StaticDetails.Role_User))
+			{
+				<h3>Your Reports. 5 or more reports puts you into risk of losing account.</h3>
+			}
+			else if(User.IsInRole(StaticDetails.Role_Admin))
+			{
+				<h2>Reports you created</h2>
+			}
+		</div>
+	</div>
+
+	<table id="tblData" class="table table-bordered table-striped" style="width:100%;">
+		<thead>
+			<tr>
+				@if(User.IsInRole(StaticDetails.Role_User))
+				{
+					<th>
+						Admin mail
+					</th>
+				}
+				else if(User.IsInRole(StaticDetails.Role_Admin))
+				{
+					<th>
+						User reported
+					</th>
+				}
+				<th>
+					Report Description
+				</th>
+				@if(User.IsInRole(StaticDetails.Role_Admin))
+				{
+					<th></th>
+				}
+			</tr>
+		</thead>
+	</table>
+</div>
+
+@section Scripts {
+	@if(User.IsInRole(StaticDetails.Role_User))
+	{
+		<script src="~/js/reportUser.js"></script>
+	}
+	else if (User.IsInRole(StaticDetails.Role_Admin))
+	{
+		<script src="~/js/reportAdmin.js"></script>
+	}
+}

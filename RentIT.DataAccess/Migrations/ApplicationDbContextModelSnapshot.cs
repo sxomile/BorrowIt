@@ -228,6 +228,49 @@ namespace RentIT.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("RentIT.Models.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Cities");
+                });
+
+            modelBuilder.Entity("RentIT.Models.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CountryCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CountryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
+                });
+
             modelBuilder.Entity("RentIT.Models.Item", b =>
                 {
                     b.Property<int>("Id")
@@ -303,15 +346,44 @@ namespace RentIT.DataAccess.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("RentIT.Models.Report", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AdminId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdminId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Reports");
+                });
+
             modelBuilder.Entity("RentIT.Models.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CityFromIDId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CityOfResidenceId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -323,6 +395,10 @@ namespace RentIT.DataAccess.Migrations
 
                     b.Property<string>("StreetAddress")
                         .HasColumnType("nvarchar(max)");
+
+                    b.HasIndex("CityFromIDId");
+
+                    b.HasIndex("CityOfResidenceId");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -378,6 +454,17 @@ namespace RentIT.DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("RentIT.Models.City", b =>
+                {
+                    b.HasOne("RentIT.Models.Country", "Country")
+                        .WithMany("Cities")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+                });
+
             modelBuilder.Entity("RentIT.Models.Item", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Creator")
@@ -406,6 +493,63 @@ namespace RentIT.DataAccess.Migrations
                     b.Navigation("Borrower");
 
                     b.Navigation("Lender");
+                });
+
+            modelBuilder.Entity("RentIT.Models.Report", b =>
+                {
+                    b.HasOne("RentIT.Models.ApplicationUser", "Admin")
+                        .WithMany("CreatedReports")
+                        .HasForeignKey("AdminId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("RentIT.Models.ApplicationUser", "User")
+                        .WithMany("ReceivedReports")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Admin");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("RentIT.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("RentIT.Models.City", "CityFromID")
+                        .WithMany("CityFromUsers")
+                        .HasForeignKey("CityFromIDId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("RentIT.Models.City", "CityOfResidence")
+                        .WithMany("CityOfResidenceUsers")
+                        .HasForeignKey("CityOfResidenceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CityFromID");
+
+                    b.Navigation("CityOfResidence");
+                });
+
+            modelBuilder.Entity("RentIT.Models.City", b =>
+                {
+                    b.Navigation("CityFromUsers");
+
+                    b.Navigation("CityOfResidenceUsers");
+                });
+
+            modelBuilder.Entity("RentIT.Models.Country", b =>
+                {
+                    b.Navigation("Cities");
+                });
+
+            modelBuilder.Entity("RentIT.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("CreatedReports");
+
+                    b.Navigation("ReceivedReports");
                 });
 #pragma warning restore 612, 618
         }

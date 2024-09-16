@@ -5,6 +5,7 @@ using RentIT.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using RentIT.Utility;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 

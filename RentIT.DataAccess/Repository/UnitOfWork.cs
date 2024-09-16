@@ -14,12 +14,18 @@ namespace RentIT.DataAccess.Repository
 		public IItemRepository Item { get; private set; }
 		public IUserRepository User { get; private set; }
 		public IOrderRepository Order { get; private set; }
+		public ICountryRepository Country { get; private set; }
+		public ICityRepository City { get; private set; }
+		public IReportRepository Report { get; private set; }
 		public UnitOfWork(ApplicationDbContext db)
 		{
 			_db = db;
 			Item = new ItemRepository(_db);
 			User = new UserRepository(_db);
 			Order = new OrderRepository(_db);
+			Country = new CountryRepository(_db);
+			City = new CityRepository(_db);
+			Report = new ReportRepository(_db);
 		}
 
 		public void Save()

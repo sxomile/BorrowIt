@@ -1,7 +1,7 @@
-﻿@model Order
+﻿@model OrderVM
 
 <form method="post">
- 	<input asp-for="@Model.OrderId" type="hidden" />
+ 	<input asp-for="@Model.Order.OrderId" type="hidden" />
 	@*<input asp-for="Order.ItemName" type="hidden" />
 	<input asp-for="Order.BorrowerId" type="hidden" />
 	<input asp-for="Order.LenderId" type="hidden" /> *@
@@ -14,34 +14,34 @@
 				</div>
 				<hr />
 				<div class="mb-3 row p-1">
-					<label asp-for="ItemName" class="p-0">Item name:</label>
-					<input asp-for="ItemName" type="text" class="form-control" disabled />
-					<span asp-validation-for="ItemName" class="text-danger"></span>
+					<label asp-for="Order.ItemName" class="p-0">Item name:</label>
+					<input asp-for="Order.ItemName" type="text" class="form-control" disabled />
+					<span asp-validation-for="Order.ItemName" class="text-danger"></span>
 				</div>
 				<div class="mb-3 col-3 row p-1">
-					<label asp-for="RentTime" class="p-0">Days for rent:</label>
-					<input asp-for="RentTime" type="number" class="form-control" disabled />
-					<span asp-validation-for="RentTime" class="text-danger"></span>
+					<label asp-for="Order.RentTime" class="p-0">Days for rent:</label>
+					<input asp-for="Order.RentTime" type="number" class="form-control" disabled />
+					<span asp-validation-for="Order.RentTime" class="text-danger"></span>
 				</div>
 				<div class="mb-3 row p-1">
-					<label asp-for="Lender.UserName" class="p-0">Lender:</label>
-					<input asp-for="Lender.UserName" type="text" class="form-control" disabled />
-					<span asp-validation-for="Lender.UserName" class="text-danger"></span>
+					<label asp-for="Order.Lender.UserName" class="p-0">Lender:</label>
+					<input asp-for="Order.Lender.UserName" type="text" class="form-control" disabled />
+					<span asp-validation-for="Order.Lender.UserName" class="text-danger"></span>
 				</div>
 				<div class="mb-3 col-3 row p-1">
-					<label asp-for="Lender.PhoneNumber" class="p-0">Lender phone:</label>
-					<input asp-for="Lender.PhoneNumber" type="text" class="form-control" disabled />
-					<span asp-validation-for="Lender.PhoneNumber" class="text-danger"></span>
+					<label asp-for="Order.Lender.PhoneNumber" class="p-0">Lender phone:</label>
+					<input asp-for="Order.Lender.PhoneNumber" type="text" class="form-control" disabled />
+					<span asp-validation-for="Order.Lender.PhoneNumber" class="text-danger"></span>
 				</div>
 				<div class="mb-3 col-3 row p-1">
-					<label asp-for="Borrower.UserName" class="p-0">Borrower:</label>
-					<input asp-for="Borrower.UserName" type="text" class="form-control" disabled />
-					<span asp-validation-for="Borrower.UserName" class="text-danger"></span>
+					<label asp-for="Order.Borrower.UserName" class="p-0">Borrower:</label>
+					<input asp-for="Order.Borrower.UserName" type="text" class="form-control" disabled />
+					<span asp-validation-for="Order.Borrower.UserName" class="text-danger"></span>
 				</div>
 				<div class="mb-3 col-3 row p-1">
-					<label asp-for="Borrower.PhoneNumber" class="p-0">Borrower phone:</label>
-					<input asp-for="Borrower.PhoneNumber" type="text" class="form-control" disabled />
-					<span asp-validation-for="Borrower.PhoneNumber" class="text-danger"></span>
+					<label asp-for="Order.Borrower.PhoneNumber" class="p-0">Borrower phone:</label>
+					<input asp-for="Order.Borrower.PhoneNumber" type="text" class="form-control" disabled />
+					<span asp-validation-for="Order.Borrower.PhoneNumber" class="text-danger"></span>
 				</div>
 				<div class="row">
 					@* <div class="col-6 col-md-3">
@@ -50,10 +50,13 @@
 					<div class="col-6 col-md-3">
 						<a asp-controller="Order" asp-action="Index" class="btn btn-light form-control">Back to items</a>
 					</div>
-					<div class="col-6 col-md-3">
-						<button type="submit" class="btn btn-primary form-control">Mark as returned!</button>
+					@if (Model.Order.Lender == Model.User)
+					{
+						<div class="col-6 col-md-3">
+							<button type="submit" class="btn btn-primary form-control">Mark as returned!</button>
 
-					</div>
+						</div>
+					}
 				</div>
 			</div>
 		</div>

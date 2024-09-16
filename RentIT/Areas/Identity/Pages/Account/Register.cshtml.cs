@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
+using RentIT.DataAccess.Repository.IRepository;
 using RentIT.Models;
 using RentIT.Utility;
 
@@ -27,6 +28,7 @@ namespace RentIT.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IUnitOfWork _unitOfWork;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -34,7 +36,8 @@ namespace RentIT.Areas.Identity.Pages.Account
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -43,6 +46,7 @@ namespace RentIT.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _unitOfWork = unitOfWork;
         }
 
         /// <summary>
@@ -105,10 +109,14 @@ namespace RentIT.Areas.Identity.Pages.Account
             [Required]
             public string Name {  get; set; }
             public string? StreetAddress {  get; set; }
-			[Required]
-			public string? City {  get; set; }
-			[Required]
-			public string? Country { get; set; }
+            [Required]
+            public int CityFromIDId { get; set; }
+
+            [Required]
+            public int CityOfResidenceID { get; set; }
+
+            public IEnumerable<SelectListItem> CityFromList { get; set; }
+            public IEnumerable<SelectListItem> CityOfResidenceList { get; set; }
             [Required]
             public string PhoneNumber {  get; set; }
 
@@ -125,12 +133,24 @@ namespace RentIT.Areas.Identity.Pages.Account
 				//ovo GetAwaiter().GetResult() stavljam da ne bih na glupim mestima pisao await
 			}
 
+            var cities = _unitOfWork.City.GetAll(includeProperties: "Country");
+
             Input = new()
             {
 				RoleList = _roleManager.Roles.Select(x => x.Name).Select(i => new SelectListItem
                 {
                     Text = i,
                     Value = i
+                }),
+                CityFromList = cities.Select(c => new SelectListItem
+                {
+                    Value = c.Id.ToString(),
+                    Text = $"{c.Name}, {c.Country.CountryName}"
+                }),
+                CityOfResidenceList = cities.Select(c => new SelectListItem
+                {
+                    Value = c.Id.ToString(),
+                    Text = $"{c.Name}, {c.Country.CountryName}"
                 })
             };
             
@@ -159,10 +179,12 @@ namespace RentIT.Areas.Identity.Pages.Account
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 user.Name = Input.Name;
-                user.City = Input.City;
+                user.CityFromIDId = Input.CityFromIDId;
                 user.StreetAddress = Input.StreetAddress;
                 user.PhoneNumber = Input.PhoneNumber;
-                user.Country = Input.Country;
+                user.CityOfResidenceId = Input.CityOfResidenceID;
+                user.CityOfResidence = _unitOfWork.City.Get(c => c.Id == user.CityOfResidenceId);
+                user.CityFromID = _unitOfWork.City.Get(c => c.Id == user.CityFromIDId);
                 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 

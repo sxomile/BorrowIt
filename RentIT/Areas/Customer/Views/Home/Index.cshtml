@@ -54,8 +54,14 @@
 									if (creator != null)
 									{
 										<p class="card-title text-secondary text-center">
-											@creator.City, @creator.Country
+											@creator.CityOfResidence.Name, @creator.CityOfResidence.Country.CountryName
 										</p>
+										if(@creator.CityFromID.Name != @creator.CityOfResidence.Name)
+										{
+											<p class="text-center">
+												Possibly in @creator.CityFromID.Name, @creator.CityFromID.Country.CountryName
+											</p>
+										}
 
 									}
 								}

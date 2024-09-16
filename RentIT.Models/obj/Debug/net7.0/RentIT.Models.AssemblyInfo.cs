@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RentIT.Models")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77ba962ee84f2fe0ccd8b9a612bb2fcc4a677145")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+21b37b01ccd3de18e2f33386508987aa76550d83")]
 [assembly: System.Reflection.AssemblyProductAttribute("RentIT.Models")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RentIT.Models")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

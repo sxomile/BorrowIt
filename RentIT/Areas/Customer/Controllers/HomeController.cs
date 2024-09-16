@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RentIT.DataAccess.Repository.IRepository;
 using RentIT.Helpers;
@@ -32,12 +33,13 @@ namespace RentIT.Areas.Customer.Controllers
 
 			if (!nearby)
             {
-                homeVM.Items = _unitOfWork.Item.GetAll(i => i.Name.StartsWith(search), includeProperties: "Creator").ToPagedList(page ?? 1, 8);
+                homeVM.Items = _unitOfWork.Item.GetAll(i => i.Name.StartsWith(search), includeProperties: "Creator,Creator.CityOfResidence,Creator.CityOfResidence.Country,Creator.CityFromID,Creator.CityFromID.Country").ToPagedList(page ?? 1, 8);
                 return View(homeVM);
 
 			}
 
 			var ipInfo = new IPInfo();
+
 			try
 			{
 				var url = "https://ipinfo.io?token=bab16e3d59992a";
@@ -54,12 +56,14 @@ namespace RentIT.Areas.Customer.Controllers
 				Console.WriteLine(ex.Message);
 			}
 
-			homeVM.Items = _unitOfWork.Item.GetAll(i => ((ApplicationUser)i.Creator).City == homeVM.City
-			    && ((ApplicationUser)i.Creator).Country == homeVM.Country
+			homeVM.Items = _unitOfWork.Item.GetAll(i => ((ApplicationUser)i.Creator).CityOfResidence.Name == homeVM.City
+			    && ((ApplicationUser)i.Creator).CityOfResidence.Country.CountryName == homeVM.Country
                 && i.Name.StartsWith(search), 
-                includeProperties: "Creator")
+                includeProperties: "Creator,Creator.CityOfResidence,Creator.CityOfResidence.Country,Creator.CityFromID,Creator.CityFromID.Country")
                 .ToPagedList(page ?? 1, 8);
 			
+
+            //sada je izmenjeno i deluje da je dobro, ali pratiti vremenom da ne dodje do neke greske
             return View(homeVM);
         }
 

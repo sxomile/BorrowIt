@@ -11,6 +11,9 @@ namespace RentIT.DataAccess.Repository.IRepository
 		IItemRepository Item {  get; }
 		IUserRepository User { get; }
 		IOrderRepository Order { get; }
+		ICountryRepository Country { get; }
+		ICityRepository City { get; }
+		IReportRepository Report { get; }
 		void Save();
 	}
 }

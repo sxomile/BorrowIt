@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,6 @@ namespace RentIT.Models.ViewModels
     {
         public Order Order { get; set; }
         public Item Item { get; set; }
+        public IdentityUser? User { get; set; }
     }
 }
