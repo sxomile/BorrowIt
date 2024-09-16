@@ -308,6 +308,39 @@ namespace RentIT.DataAccess.Migrations
                     b.ToTable("Items");
                 });
 
+            modelBuilder.Entity("RentIT.Models.ItemCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ItemCategories");
+                });
+
+            modelBuilder.Entity("RentIT.Models.ItemItemCategory", b =>
+                {
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ItemCategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ItemId", "ItemCategoryId");
+
+                    b.HasIndex("ItemCategoryId");
+
+                    b.ToTable("ItemItemCategories");
+                });
+
             modelBuilder.Entity("RentIT.Models.Order", b =>
                 {
                     b.Property<int>("OrderId")
@@ -359,7 +392,6 @@ namespace RentIT.DataAccess.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
@@ -467,13 +499,32 @@ namespace RentIT.DataAccess.Migrations
 
             modelBuilder.Entity("RentIT.Models.Item", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Creator")
-                        .WithMany()
+                    b.HasOne("RentIT.Models.ApplicationUser", "Creator")
+                        .WithMany("Items")
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Creator");
+                });
+
+            modelBuilder.Entity("RentIT.Models.ItemItemCategory", b =>
+                {
+                    b.HasOne("RentIT.Models.ItemCategory", "ItemCategory")
+                        .WithMany("ItemItemCategories")
+                        .HasForeignKey("ItemCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RentIT.Models.Item", "Item")
+                        .WithMany("ItemItemCategories")
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Item");
+
+                    b.Navigation("ItemCategory");
                 });
 
             modelBuilder.Entity("RentIT.Models.Order", b =>
@@ -545,9 +596,21 @@ namespace RentIT.DataAccess.Migrations
                     b.Navigation("Cities");
                 });
 
+            modelBuilder.Entity("RentIT.Models.Item", b =>
+                {
+                    b.Navigation("ItemItemCategories");
+                });
+
+            modelBuilder.Entity("RentIT.Models.ItemCategory", b =>
+                {
+                    b.Navigation("ItemItemCategories");
+                });
+
             modelBuilder.Entity("RentIT.Models.ApplicationUser", b =>
                 {
                     b.Navigation("CreatedReports");
+
+                    b.Navigation("Items");
 
                     b.Navigation("ReceivedReports");
                 });

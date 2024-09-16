@@ -18,6 +18,8 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 	public DbSet<Country> Countries { get; set; }
 	public DbSet<City> Cities { get; set; }
 	public DbSet<Report> Reports { get; set; }
+    public DbSet<ItemCategory> ItemCategories { get; set; }
+    public DbSet<ItemItemCategory> ItemItemCategories { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -63,5 +65,24 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 			.WithMany(u => u.ReceivedReports) 
 			.HasForeignKey(r => r.UserId)
 			.OnDelete(DeleteBehavior.Restrict);
-	}
+
+        modelBuilder.Entity<Item>()
+			.HasOne(i => i.Creator)
+			.WithMany(au => au.Items)
+			.HasForeignKey(i => i.CreatorId)
+			.OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<ItemItemCategory>()
+                .HasKey(ic => new { ic.ItemId, ic.ItemCategoryId });
+
+        modelBuilder.Entity<ItemItemCategory>()
+            .HasOne(ic => ic.Item)
+            .WithMany(i => i.ItemItemCategories)
+            .HasForeignKey(ic => ic.ItemId);
+
+        modelBuilder.Entity<ItemItemCategory>()
+            .HasOne(ic => ic.ItemCategory)
+            .WithMany(c => c.ItemItemCategories)
+            .HasForeignKey(ic => ic.ItemCategoryId);
+    }
 }

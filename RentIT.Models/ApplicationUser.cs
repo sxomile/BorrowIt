@@ -24,5 +24,7 @@ namespace RentIT.Models
 		public ICollection<Report> CreatedReports { get; set; }  // Reports created by the Admin
 		[JsonIgnore]
 		public ICollection<Report> ReceivedReports { get; set; }  // Reports received by the User
-	}
+		[JsonIgnore]
+        public ICollection<Item> Items { get; set; }
+    }
 }

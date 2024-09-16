@@ -44,6 +44,9 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Customer" asp-controller="Report" asp-action="Index">User Reports</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="ItemCategory" asp-action="Index">Category Management</a>
+                            </li>
                         }
                         else if(User.IsInRole(StaticDetails.Role_User))
                         {

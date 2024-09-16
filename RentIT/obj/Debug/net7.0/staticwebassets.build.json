@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "iB8+bC4mZ/wTo4aWrL6Ffbtb6l1Mkpe7ASDDrVR/80w=",
+  "Hash": "ut0Lkqy+xFcxNVdzjLSEr4N3rZelCY3GoOHy+4Cc00E=",
   "Source": "RentIT",
   "BasePath": "_content/RentIT",
   "Mode": "Default",
@@ -224,25 +224,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\item\\2ec426f3-e886-4def-a280-060be4866b47.png"
-    },
-    {
-      "Identity": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\33315bcc-c487-4ade-aabf-6a50c6d8c509.png",
-      "SourceId": "RentIT",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\",
-      "BasePath": "_content/RentIT",
-      "RelativePath": "img/item/33315bcc-c487-4ade-aabf-6a50c6d8c509.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\img\\item\\33315bcc-c487-4ade-aabf-6a50c6d8c509.png"
     },
     {
       "Identity": "C:\\dotNet\\RentAThing\\RentIT\\wwwroot\\img\\item\\3ecdc423-da19-4d4a-96ff-095262f84691.png",

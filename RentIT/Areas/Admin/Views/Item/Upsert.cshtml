@@ -2,7 +2,6 @@
 
 <form method="post" enctype="multipart/form-data">
 	<input asp-for="Item.Id" hidden/>
-	@* <input asp-for="Item.ImageUrl" hidden /> *@
 	<div class="row">
 		<div class="col-9">
 			<div class="border p-3 mt-4">
@@ -24,6 +23,25 @@
 					<input asp-for="Item.RentTime" type="number" class="form-control" />
 					<span asp-validation-for="Item.RentTime" class="text-danger"></span>
 				</div>
+				<div class="mb-3">
+					<label>Categories:</label>
+					<select asp-for="SelectedCategoryIds" asp-items="@(new SelectList(Model.CategoryList, "Id", "Name"))" class="form-control" multiple></select>
+
+				</div>
+
+				<!-- Add New Categories -->
+				<div class="mb-3">
+					<label>Add new categories:</label>
+					<input type="text" id="newCategoryInput" class="form-control" placeholder="Enter new category" />
+					<button type="button" id="addNewCategory" class="btn btn-secondary mt-2">Add Category</button>
+				</div>
+
+				<!-- List of New Categories -->
+				<ul id="newCategoryList"></ul>
+
+				<!-- Hidden Input to Submit New Categories -->
+				<input type="hidden" asp-for="NewCategoryNames" id="newCategoryNames" />
+
 				<div class="mb-3 col-3 row p-1">
 					<label asp-for="Item.ImageUrl" class="p-0"></label>
 					<input type="file" name="file" class="form-control" />
@@ -52,22 +70,44 @@
 	</form>
 
 @section Scripts{
-	@* <script>
-		tinymce.init({
-			selector: 'textarea',
-			plugins: 'anchor autolink charmap codesample emoticons image link lists searchreplace table visualblocks wordcount pageembed linkchecker a11ychecker advtable advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-			toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | addcomment showcomments | spellcheckdialog a11ycheck typography | numlist bullist indent outdent',
-			tinycomments_mode: 'embedded',
-			tinycomments_author: 'Author name',
-			mergetags_list: [
-				{ value: 'First.Name', title: 'First Name' },
-				{ value: 'Email', title: 'Email' },
-			],
-			ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-		});
 
-	</script> *@
 	@{
 		<partial name="_ValidationScriptsPartial"/>
 	}
+	<script>
+        let newCategories = [];
+
+        // Add new category to the list
+        document.getElementById("addNewCategory").addEventListener("click", function () {
+            const categoryInput = document.getElementById("newCategoryInput");
+            const categoryName = categoryInput.value.trim();
+
+            if (categoryName) {
+                newCategories.push(categoryName);
+                updateCategoryList();
+                categoryInput.value = ""; // Clear input
+            }
+        });
+
+        // Update the displayed list of new categories and hidden input field
+        function updateCategoryList() {
+            const list = document.getElementById("newCategoryList");
+            list.innerHTML = ""; // Clear list
+
+            newCategories.forEach((category, index) => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `${category} <button type="button" onclick="removeCategory(${index})" class="btn btn-link">Remove</button>`;
+                list.appendChild(listItem);
+            });
+
+            // Update the hidden input field with the new categories
+            document.getElementById("newCategoryNames").value = JSON.stringify(newCategories);
+        }
+
+        // Remove a category from the list
+        function removeCategory(index) {
+            newCategories.splice(index, 1); // Remove category by index
+            updateCategoryList(); // Update the list
+        }
+    </script>
 }

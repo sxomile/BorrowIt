@@ -14,6 +14,8 @@ namespace RentIT.DataAccess.Repository.IRepository
 		ICountryRepository Country { get; }
 		ICityRepository City { get; }
 		IReportRepository Report { get; }
+		IItemCategoryRepository ItemCategory { get; }
+		IItemItemCategoryRepository ItemItemCategory { get; }
 		void Save();
 	}
 }

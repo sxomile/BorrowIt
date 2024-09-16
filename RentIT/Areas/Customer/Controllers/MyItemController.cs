@@ -43,22 +43,30 @@ namespace RentIT.Areas.Customer.Controllers
 		[HttpGet]
         public IActionResult Upsert(int? id)
         {
-            ItemVM itemVM = new ItemVM()
-            {
-                Item = new Item()
-            };
+			var itemVM = new ItemVM()
+			{
+				Item = new Item(),
+				CategoryList = _unitOfWork.ItemCategory.GetAll().ToList(),
+				SelectedCategoryIds = new List<int>() // Initialize the list
+			};
 
-            if (id == null || id == 0)
-            {
-                return View(itemVM);
-            }
-            else
-            {
-                itemVM.Item = _unitOfWork.Item.Get(i => i.Id == id);
-                return View(itemVM);
-            }
+			if (id == null || id == 0)
+			{
+				return View(itemVM);
+			}
+			else
+			{
+				itemVM.Item = _unitOfWork.Item.Get(i => i.Id == id, includeProperties: "ItemItemCategories");
 
-        }
+				// Populate SelectedCategoryIds with the related categories
+				itemVM.SelectedCategoryIds = itemVM.Item.ItemItemCategories
+					.Select(c => c.ItemCategoryId)
+					.ToList();
+
+				return View(itemVM);
+			}
+
+		}
 
 		[HttpPost]
 		public async Task<IActionResult> Upsert(ItemVM obj, IFormFile? file)
@@ -66,11 +74,14 @@ namespace RentIT.Areas.Customer.Controllers
 			if (ModelState.IsValid)
 			{
 				string wwRootPath = _webHostEnvironment.WebRootPath;
+
+				// Handle Image File Upload
 				if (file != null)
 				{
 					string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
 					string itemPath = Path.Combine(wwRootPath, @"img\item");
 
+					// Delete old image if it exists
 					if (!string.IsNullOrEmpty(obj.Item.ImageUrl))
 					{
 						var oldImgPath = Path.Combine(wwRootPath, obj.Item.ImageUrl.TrimStart('\\'));
@@ -80,6 +91,7 @@ namespace RentIT.Areas.Customer.Controllers
 						}
 					}
 
+					// Save the new image
 					using (var fileStream = new FileStream(Path.Combine(itemPath, fileName), FileMode.Create))
 					{
 						file.CopyTo(fileStream);
@@ -88,21 +100,71 @@ namespace RentIT.Areas.Customer.Controllers
 					obj.Item.ImageUrl = @"\img\item\" + fileName;
 				}
 
+				// Handle creator if it's a new item
 				if (obj.Item.Id == 0)
 				{
+					//Create new
 					var creator = await _userManager.GetUserAsync(User);
-					obj.Item.Creator = creator;
+					obj.Item.Creator = (ApplicationUser)creator;
 					_unitOfWork.Item.Add(obj.Item);
+					// Now add categories, even though the Item hasn't been saved yet.
+					// EF Core will track the changes and handle this correctly during Save.
+
+					// Handle Category Associations
+					foreach (var categoryId in obj.SelectedCategoryIds)
+					{
+						var itemCategory = new ItemItemCategory
+						{
+							Item = obj.Item,  // Use the tracked Item object directly
+							ItemCategoryId = categoryId
+						};
+						_unitOfWork.ItemItemCategory.Add(itemCategory);
+					}
+
+					// Save everything in one go
+					_unitOfWork.Save();
+
+					TempData["success"] = "Item added successfully!";
+					return RedirectToAction("Index");
 				}
 				else
 				{
-					_unitOfWork.Item.Update(obj.Item);
+					//Update existing
+
+					// Fetch the existing item
+					var item = _unitOfWork.Item.Get(i => i.Id == obj.Item.Id);
+
+					_unitOfWork.Item.Update(item);
+
+					// Remove all existing categories for the item
+					var existingItemCategories = _unitOfWork.ItemItemCategory.GetAll(iic => iic.ItemId == item.Id);
+					foreach (var category in existingItemCategories)
+					{
+						_unitOfWork.ItemItemCategory.Remove(category);
+					}
+
+					// Add the newly selected categories
+					foreach (var categoryId in obj.SelectedCategoryIds)
+					{
+						var itemCategory = new ItemItemCategory
+						{
+							ItemId = item.Id,  // Use the existing item's ID
+							ItemCategoryId = categoryId
+						};
+						_unitOfWork.ItemItemCategory.Add(itemCategory);
+					}
+
+					_unitOfWork.Item.Update(item);
+
+					// Save all changes to the database
+					_unitOfWork.Save();
+
+					TempData["success"] = "Item updated successfully!";
+					return RedirectToAction("Index");
 				}
 
-				_unitOfWork.Save();
-				TempData["success"] = "Item added succesfully!";
-				return RedirectToAction("Index");
 			}
+
 			return View(obj);
 		}
 

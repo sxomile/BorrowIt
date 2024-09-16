@@ -23,9 +23,10 @@ namespace RentIT.Models
         public bool IsGift { get; set; } = false;
         public string ImageUrl {  get; set; } = string.Empty;
         [ValidateNever]
-        public IdentityUser Creator {  get; set; }
+        public ApplicationUser Creator {  get; set; }
         [ForeignKey("Creator")]
         [ValidateNever]
         public string CreatorId { get; set; }
+        public ICollection<ItemItemCategory> ItemItemCategories { get; set; } = new List<ItemItemCategory>();
     }
 }

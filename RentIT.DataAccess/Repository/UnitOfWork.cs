@@ -1,5 +1,6 @@
 ﻿using RentIT.DataAccess.Data;
 using RentIT.DataAccess.Repository.IRepository;
+using RentIT.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace RentIT.DataAccess.Repository
 		public ICountryRepository Country { get; private set; }
 		public ICityRepository City { get; private set; }
 		public IReportRepository Report { get; private set; }
+		public IItemCategoryRepository ItemCategory { get; private set; }
+		public IItemItemCategoryRepository ItemItemCategory { get; private set; }
 		public UnitOfWork(ApplicationDbContext db)
 		{
 			_db = db;
@@ -26,6 +29,8 @@ namespace RentIT.DataAccess.Repository
 			Country = new CountryRepository(_db);
 			City = new CityRepository(_db);
 			Report = new ReportRepository(_db);
+			ItemCategory = new ItemCategoryRepository(_db);
+			ItemItemCategory = new ItemItemCategoryRepository(_db);
 		}
 
 		public void Save()
